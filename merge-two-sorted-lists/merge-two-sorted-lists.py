@@ -29,9 +29,7 @@ class Solution:
             temp = ListNode(v)
             temp.next = l_
             l_ = temp
-        return l_
-
-    
+        return l_    
     
     
 #         if l1 is None :
