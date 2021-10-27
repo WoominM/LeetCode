@@ -1,3 +1,3 @@
 # LeetCode
 
-study log
+Study log
