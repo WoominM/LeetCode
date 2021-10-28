@@ -10,11 +10,12 @@ class Solution:
         def sort2bst(nums):
             if not nums:
                 return
-
-            center = nums[len(nums) // 2]
-            root = TreeNode(center)
-            root.left = sort2bst(nums[:len(nums) // 2])
-            root.right = sort2bst(nums[len(nums) // 2 + 1:])
+            
+            center = len(nums) // 2
+            centernode = nums[center]
+            root = TreeNode(centernode)
+            root.left = sort2bst(nums[:center])
+            root.right = sort2bst(nums[center+1:])
 
             return root
         
