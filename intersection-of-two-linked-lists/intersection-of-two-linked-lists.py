@@ -7,17 +7,17 @@
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:       
             
-        self.lenA = 0
-        nodeA = headA
-        while nodeA:
-            self.lenA += 1
-            nodeA = nodeA.next
+#         self.lenA = 0
+#         nodeA = headA
+#         while nodeA:
+#             self.lenA += 1
+#             nodeA = nodeA.next
             
-        self.lenB = 0
-        nodeB = headB
-        while nodeB:
-            self.lenB += 1
-            nodeB = nodeB.next
+#         self.lenB = 0
+#         nodeB = headB
+#         while nodeB:
+#             self.lenB += 1
+#             nodeB = nodeB.next
             
 #         def helper(headA, headB, lenA, lenB):
 #             if not headA or not headB or lenA < lenB:
@@ -41,22 +41,28 @@ class Solution:
     
     
     
-        def compare(headA, headB):
-            while headA:
-                if headA == headB:
-                    return headA
-                headA = headA.next
-                headB = headB.next
-            return None
+#         def compare(headA, headB):
+#             while headA:
+#                 if headA == headB:
+#                     return headA
+#                 headA = headA.next
+#                 headB = headB.next
+#             return None
         
-        if self.lenA > self.lenB:
-            for i in range(self.lenA - self.lenB):
-                headA = headA.next
-        else:
-            for i in range(self.lenB - self.lenA):
-                headB = headB.next
+#         if self.lenA > self.lenB:
+#             for i in range(self.lenA - self.lenB):
+#                 headA = headA.next
+#         else:
+#             for i in range(self.lenB - self.lenA):
+#                 headB = headB.next
                 
-        return compare(headA, headB)
-    
+#         return compare(headA, headB)
+
+        pA = headA
+        pB = headB
+        while pA != pB:
+            pA = pA.next if pA else headB
+            pB = pB.next if pB else headA
+        return pA
     
                 
