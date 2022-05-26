@@ -11,15 +11,15 @@ class Solution:
         self.it = []
         self.visited = [False] * 101
         self.n = 0
-        return self.dfs(root)
+        return self.dfs(root, self.it)
     
-    def dfs(self, root):
+    def dfs(self, root, it):
         if root.left == None:
-            self.it.append(root.val)
+            it.append(root.val)
         else:
-            self.dfs(root.left)
-            self.it.append(root.val)
+            self.dfs(root.left, it)
+            it.append(root.val)
         if root.right == None:
-            return self.it
-        self.dfs(root.right)
-        return self.it
+            return it
+        self.dfs(root.right, it)
+        return it
