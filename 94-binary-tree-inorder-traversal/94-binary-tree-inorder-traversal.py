@@ -5,38 +5,27 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+### iteratively
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if root == None:
-            return
         stack = []
         it = []
-        mroot = root
-        while stack or mroot is not None:
-            while mroot is not None:
-                stack.append(mroot)
-                mroot = mroot.left
-            mroot = stack.pop()
-            it.append(mroot.val)
-            mroot = mroot.right
+        while stack or root is not None:
+            while root is not None:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            it.append(root.val)
+            root = root.right
         return it
                 
-    
-        
-### recursive approach
+### recursively
+#     def inorderTraversal1(self, root):
+#         it = []
+#         self.helper(root, it)
+#         return it
 
-#     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-#         if root == None:
-#             return
-#         self.it = []        
-#         return self.dfs(root)
-    
-#     def dfs(self, root):
-#         if root.left == None:
-#             self.it.append(root.val)
-#         else:
-#             self.dfs(root.left)
-#             self.it.append(root.val)
-#         if root.right == None:
-#             return self.it
-#         self.dfs(root.right)
-#         return self.it
+#     def helper(self, root, it):
+#         if root:
+#             self.helper(root.left, it)
+#             it.append(root.val)
+#             self.helper(root.right, it)
