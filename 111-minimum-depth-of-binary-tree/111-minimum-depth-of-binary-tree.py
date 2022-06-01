@@ -6,7 +6,9 @@
 #         self.right = right
 class Solution:  
     def minDepth(self, root):
-        if not root: 
+        if not root:
             return 0
-        d = list(map(self.minDepth, (root.left, root.right)))
-        return 1 + (min(d) or max(d))
+        if not root.left or not root.right:
+            return 1+ max(self.minDepth(root.left), self.minDepth(root.right))
+        return 1+ min(self.minDepth(root.left), self.minDepth(root.right))
+    
