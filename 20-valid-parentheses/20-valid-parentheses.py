@@ -8,7 +8,7 @@ class Solution:
         })
         
         for c in s:
-            if c in list(slist.keys()):
+            if c in slist.keys():
                 stack.append(c)
             elif stack:
                 last = stack.pop()
