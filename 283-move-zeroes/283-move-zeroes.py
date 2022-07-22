@@ -8,5 +8,5 @@ class Solution:
             if nums[i-zeronum] == 0:
                 nums.pop(i-zeronum)
                 zeronum += 1
-        nums += [0] *zeronum
+        nums += [0] * zeronum
         return nums 
