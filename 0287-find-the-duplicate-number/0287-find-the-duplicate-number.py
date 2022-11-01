@@ -7,10 +7,17 @@ class Solution:
         #         return nums[i]
         
         #Sol2 -> O(n), Space: O(n)
-        table = [0] * len(nums)
-        for num in nums:
-            table[num] += 1
-            if table[num] == 2:
-                return num
+        # table = [0] * len(nums)
+        # for num in nums:
+        #     table[num] += 1
+        #     if table[num] == 2:
+        #         return num
+        
+        #Sol3 -> O(n), Space: O(1)
+        for i in range(len(nums)):
+            if nums[abs(nums[i])] < 0:
+                return abs(nums[i])
+            nums[abs(nums[i])] *= -1 
+            
         
         
