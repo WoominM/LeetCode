@@ -4,7 +4,6 @@ class Solution:
             left, right = 0, len(nums) - 1
             while left <= right:
                 pivot = (left + right) // 2
-                print(pivot)
                 if nums[pivot] == target:
                     return pivot
                 elif nums[pivot] < target:
