@@ -11,5 +11,6 @@ class Solution:
                 else:
                     right = pivot - 1
             return None
+        
         matrix = [num for nums in matrix for num in nums]
         return binary_search(matrix, target) is not None
