@@ -15,12 +15,14 @@ class Solution:
         #         matrix = [nums[1:] for nums in matrix]
         # return False
     
-        x, y = len(matrix[0]) - 1, 0
-        while x >= 0 and y < len(matrix):
-            if matrix[y][x] > target:
-                x -= 1
-            elif matrix[y][x] < target:
-                y += 1
+        x, y = 0, len(matrix) - 1
+        while x < len(matrix[0]) and y >= 0:
+            if matrix[y][x] < target:
+                x += 1
+            elif matrix[y][x] > target:
+                y -= 1
             else:
                 return True
-        return False
+        if x == len(matrix) and y >= 0:
+            return matrix[y][x-1] == target
+        return
