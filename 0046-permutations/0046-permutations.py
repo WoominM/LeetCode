@@ -6,7 +6,8 @@ class Solution:
                 out.append(temp)
                 return
             
-            for num in [num for num in nums if num not in temp]:
+            subnums = [num for num in nums if num not in temp]
+            for num in subnums:
                 helper(i + 1, temp + [num])
                 
         helper(0, [])
