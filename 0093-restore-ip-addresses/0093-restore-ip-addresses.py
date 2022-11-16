@@ -2,8 +2,8 @@ class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
         
         def helper(nums, path):
-            if len(path) > 8:
-                return
+            # if len(path) > 8:
+            #     return
             if not nums:
                 if len(path) == 8:
                     out.append(''.join(path[:-1]))
