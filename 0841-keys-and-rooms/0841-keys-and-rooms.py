@@ -19,7 +19,6 @@ class Solution:
         que.append(0)
         while que:
             room = que.popleft()
-            print(room)
             for key in rooms[room]:
                 if key not in visited:
                     que.append(key)
