@@ -14,7 +14,6 @@ class Solution:
             visited[node] = -1
             for nextnode in graph[node]:
                 helper(nextnode)
-                
             visited[node] = 1
             out.append(node)
         
@@ -23,7 +22,6 @@ class Solution:
         for a, b in prerequisites:
             graph[a].append(b)
         
-        # print(graph)
         self.loop = False
         out = []
         for node in range(numCourses):
