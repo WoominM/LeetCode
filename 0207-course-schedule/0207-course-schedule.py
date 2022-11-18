@@ -2,24 +2,29 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:        
         
         def helper(node):
-            if visit[node] == -1:
-                return False
-            if visit[node] == 1:
-                return True
-            visit[node] = -1
-            for j in graph[node]:
-                if not helper(j):
-                    return False
-            visit[node] = 1
-            return True
+            # print(node, self.loop, visited)
+            if self.loop:
+                return
+            if visited[node] == -1:
+                self.loop = True
+                return
+            if visited[node] == 1:
+                return
+            
+            visited[node] = -1
+            for nextnode in graph[node]:
+                helper(nextnode)
+                
+            visited[node] = 1
         
+        visited = [0] * numCourses
         graph = [[] for _ in range(numCourses)]
-        visit = [0] * numCourses
         for a, b in prerequisites:
             graph[b].append(a)
-            
+        
+        # print(graph)
+        self.loop = False
         for node in range(numCourses):
-            if not helper(node):
-                return False
+            helper(node)
             
-        return True
+        return not self.loop
