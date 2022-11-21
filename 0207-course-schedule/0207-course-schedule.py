@@ -1,8 +1,9 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:        
+        if not prerequisites:
+            return True
         
         def helper(node):
-            # print(node, self.loop, visited)
             if self.loop:
                 return
             if visited[node] == -1:
@@ -12,19 +13,17 @@ class Solution:
                 return
             
             visited[node] = -1
-            for nextnode in graph[node]:
-                helper(nextnode)
+            for nei in graph[node]:
+                helper(nei)
+            visited[node] = 1    
                 
-            visited[node] = 1
-        
-        visited = [0] * numCourses
         graph = [[] for _ in range(numCourses)]
         for a, b in prerequisites:
-            graph[b].append(a)
+            graph[a] += [b]
         
-        # print(graph)
         self.loop = False
-        for node in range(numCourses):
-            helper(node)
-            
+        visited = [0] * numCourses
+        for course in range(numCourses):
+            helper(course)
+
         return not self.loop
