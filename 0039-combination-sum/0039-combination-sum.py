@@ -1,16 +1,17 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        
-        out = []
-        def helper(nums, target, path):
+        def helper(target, path, k):
+            if target < 0:
+                return
             if target == 0:
                 out.append(path)
                 return
-            if target < 0:
-                return
-            for i in range(len(nums)):
-                helper(nums[i:], target - nums[i], path + [nums[i]])
-                
-                
-        helper(candidates, target, [])
+            
+            for i, num in enumerate(candidates[k:]):
+                helper(target - num, path + [num], k + i)
+        
+        out = []
+        visited = set()
+        for i, num in enumerate(candidates):
+            helper(target - num, [num], i)
         return out
