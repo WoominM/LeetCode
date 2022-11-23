@@ -24,9 +24,6 @@ class TimeMap:
                 right = pivot
         return '' if right == 0 else nums[right-1][0]
 
-        arr = self.dic[key]
-        n = len(arr)
-
     
 # Your TimeMap object will be instantiated and called as such:
 # obj = TimeMap()
