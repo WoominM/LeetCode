@@ -15,16 +15,17 @@ class Solution:
         
 #         helper(nums)
 #         return subset
-
-        subset = []
+        
+        @cache
         def helper(i, subnums):
             if i == len(nums):
-                subset.append(subnums)
+                subset.append(tuple(subnums))
                 return
             
             helper(i + 1, subnums) #[[]]
-            helper(i + 1, subnums + [nums[i]]) #[[1]]
-    
-        helper(0, [])
+            helper(i + 1, subnums + tuple([nums[i]]))#[[1]]
+        
+        subset = []
+        helper(0, tuple([]))
         return subset
         
