@@ -1,6 +1,7 @@
 class Solution:
     def largestNumber(self, nums: List[int]) -> str:
-
+        from functools import cmp_to_key
+        
         def cmp_func(x, y):
             """Sorted by value of concatenated string increasingly."""
             if x + y > y + x:
@@ -11,7 +12,7 @@ class Solution:
                 return -1
             
         # Build nums contains all numbers in the String format.
-        nums = [str(num) for num in nums]
+        nums = list(map(str, nums))
         
         # Sort nums by cmp_func decreasingly.
         nums.sort(key = cmp_to_key(cmp_func), reverse = True)
@@ -19,8 +20,8 @@ class Solution:
         # Remove leading 0s, if empty return '0'.
         return ''.join(nums).lstrip('0') or '0'
     
-    def compare(self, n1, n2):
-        return str(n1) + str(n2) > str(n2) + str(n1)
+    # def compare(self, n1, n2):
+    #     return str(n1) + str(n2) > str(n2) + str(n1)
     
 #     # merge sort        
 #     def largestNumber5(self, nums):
