@@ -1,24 +1,23 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-        l, s = len(nums), sum(nums)
-        @cache  # this is important to avoid unnecessary recursion
-        def dfs(curr: int, idx: int) -> bool:
-            """
-            Select elements and check if nums can be partitioned.
-            :param curr: The current sum of the elements in the subset.
-            :param idx: The index of the current element in nums.
-            :return: True if nums can be partitioned, False otherwise.
-            """
-            if idx == l:  # we have reached the end of the array
-                return curr == s>>1
-            elif curr+nums[idx] == (s>>1) or (curr+nums[idx] < s>>1 and dfs(curr+nums[idx], idx+1)):  # or, target sum will be reached by selecting this element
-                return True
-            return dfs(curr, idx+1)  # else, don't select this element, continue
-        return False if s&1 else dfs(0, 0)
-
-				# l, s = len(nums), sum(nums)
-				# @cache
-				# def dfs(curr: int, idx: int) -> bool:
-				# return curr == s>>1 if idx == l else True if curr+nums[idx] == s>>1 or \
-				# (curr+nums[idx] < s>>1 and dfs(curr+nums[idx], idx+1)) else dfs(curr, idx+1)
-				# return False if s&1 else dfs(0, 0)
+#         @cache
+#         def helper(i, value):
+#             if i == n:
+#                 return value * 2 == target
+#             if helper(i + 1, value + nums[i]):
+#                 return True
+#             if helper(i + 1, value):
+#                 return True
+            
+#         n = len(nums)
+#         target = sum(nums)
+#         return False if target == 1 else helper(0, 0)
+    
+        @cache
+        def subsetSum(s, i):
+            if s == 0: return True
+            if i >= len(nums) or s < 0: return False
+            return subsetSum(s-nums[i], i+1) or subsetSum(s, i+1)
+        total_sum = sum(nums)
+        return total_sum & 1 == 0 and subsetSum(total_sum // 2, 0)
+        
